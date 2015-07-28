@@ -9,6 +9,7 @@ doc = element doc {
     title?,
     desc,
     input?,
+    param*,
     return?,
     author*,
     contributor*,
