@@ -1,0 +1,187 @@
+default namespace d = "http://ns.kaikoda.com/documentation/xml"
+
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+
+start = doc
+
+doc = element doc {
+
+    title?,
+    desc,
+    input?,
+    return?,
+    author*,
+    contributor*,
+    created?,
+    note*,
+    history?,
+    
+    doc.scope?,
+    doc.ref
+    
+}
+
+doc.scope = attribute scope {
+    doc.scope.attribute.values
+}
+
+doc.ref = attribute ref {
+    xsd:IDREF
+}
+
+doc.scope.attribute.values = (
+    "stylesheet" |
+    "schema" |
+    "pattern" |
+    "component"
+)
+
+inline.structure.model = 
+    text
+
+block.structure.model = (
+    p | 
+    sequence
+)*
+
+title = element title {
+    inline.structure.model
+}
+
+desc = element desc {
+    block.structure.model
+}
+
+description = attribute description {
+    xsd:string
+}
+
+input = element input {
+    inline.structure.model
+}
+
+param = element param {
+    inline.structure.model,
+    
+    attribute name {
+        xsd:string
+    }    
+}    
+
+return = element return {
+    inline.structure.model
+}
+
+note = element note {
+    block.structure.model,
+    
+    date?,
+    todo?
+}
+
+history = element history {
+    change*
+}
+
+change = element change {
+    desc,
+    related?,
+    contributor*,
+    
+    (
+        (version | date) |
+        (version, date)
+    )
+    
+}
+
+date = attribute date {
+    xsd:date
+}
+
+version = attribute version {
+    xsd:string
+}
+
+todo = attribute todo {
+    xsd:boolean
+}
+
+p = element p {
+    inline.structure.model
+}
+
+created = element created {
+    xsd:date
+}
+
+contributor.structure.model = 
+    text
+    
+author = element author {
+    contributor.structure.model
+}
+
+contributor = element contributor {
+    contributor.structure.model
+}
+
+sequence = (
+    ul |
+    ol
+)
+
+sequence.structure.model = (
+    ingress?,
+    li*,
+    egress?    
+)
+
+ul = element ul {
+    sequence.structure.model
+}
+
+ol = element ol {
+    sequence.structure.model
+}
+
+li = element li {
+    sequence |
+    inline.structure.model
+}
+
+ingress = element ingress {
+    inline.structure.model
+}
+
+egress = element egress {
+    inline.structure.model
+}
+
+related = element related {
+    link*
+}
+
+link = element link {
+    
+    empty,
+    
+    attribute tfs-ref {
+        xsd:positiveInteger
+    },
+    attribute href {
+        xsd:anyURI
+    },
+    attribute rel {
+        doc.rel.attribute.values
+    }
+}
+
+doc.rel.attribute.values = (
+    "epic" |
+    "feature" |
+    "story" |
+    "task" |
+    "bug" |
+    "impediment"
+)
