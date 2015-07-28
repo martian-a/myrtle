@@ -166,18 +166,26 @@ link = element link {
     
     empty,
     
-    attribute tfs-ref {
-        xsd:positiveInteger
-    },
-    attribute href {
-        xsd:anyURI
-    },
-    attribute rel {
-        doc.rel.attribute.values
-    }
+    (
+        link.ref |
+        link.href
+    ),
+    link.rel?
 }
 
-doc.rel.attribute.values = (
+link.ref = attribute ref {
+    xsd:string
+}
+
+link.href = attribute href {
+    xsd:anyURI
+}
+
+link.rel = attribute rel {
+  link.rel.attribute.values
+}
+
+link.rel.attribute.values = (
     "epic" |
     "feature" |
     "story" |
