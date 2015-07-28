@@ -53,10 +53,6 @@ desc = element desc {
     block.structure.model
 }
 
-description = attribute description {
-    xsd:string
-}
-
 input = element input {
     inline.structure.model
 }
