@@ -38,7 +38,7 @@ doc.scope.attribute.values = (
 )
 
 inline.structure.model = 
-    text
+    text & link
 
 block.structure.model = (
     p | 
@@ -50,7 +50,8 @@ title = element title {
 }
 
 desc = element desc {
-    block.structure.model
+    block.structure.model |
+    inline.structure.model
 }
 
 input = element input {
@@ -70,7 +71,10 @@ return = element return {
 }
 
 note = element note {
-    block.structure.model,
+    (
+        block.structure.model |
+        inline.structure.model
+    ),
     
     date?,
     todo?
@@ -155,19 +159,9 @@ egress = element egress {
     inline.structure.model
 }
 
-related = element related {
-    link*
-}
-
 link = element link {
-    
     empty,
-    
-    (
-        link.ref |
-        link.href
-    ),
-    link.rel?
+    link.href
 }
 
 link.ref = attribute ref {
@@ -178,11 +172,26 @@ link.href = attribute href {
     xsd:anyURI
 }
 
-link.rel = attribute rel {
-  link.rel.attribute.values
+related = element related {
+    change.link*
 }
 
-link.rel.attribute.values = (
+change.link = element link {
+    
+    empty,
+    
+    (
+        link.ref | 
+        link.href
+    ),
+    change.link.rel?
+}
+
+change.link.rel = attribute rel {
+  change.link.rel.attribute.values
+}
+
+change.link.rel.attribute.values = (
     "epic" |
     "feature" |
     "story" |
