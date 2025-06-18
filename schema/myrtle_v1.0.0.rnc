@@ -1,0 +1,229 @@
+default namespace d = "http://xylarium.org/ns/xml/documentation"
+
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+
+start = (document | component | comment)
+
+document = element document {
+    detailed.structure.model    
+}
+
+component = element component {
+	attribute ref { eqname.datatype }?,
+	( detailed.structure.model | inline.structure.model | block.structure.model )
+}
+
+comment = element comment {
+	( inline.structure.model | block.structure.model )
+}
+
+detailed.structure.model = (
+
+	title?,
+    desc,
+    input?,
+    param*,
+    return?,
+	contributors?,
+    note*,
+    history?
+
+)
+
+contributors = element contributors {
+	original-author*,
+	contributor*
+}
+
+
+inline.structure.model = 
+    text & 
+    link & 
+    code.inline
+
+block.structure.model = (
+    p | 
+    sequence |
+    code.block
+)*
+
+title = element title {
+    inline.structure.model
+}
+
+desc = element desc {
+    block.structure.model |
+    inline.structure.model
+}
+
+input = element input {
+    inline.structure.model
+}
+
+param = element param {
+    inline.structure.model,
+    
+    attribute name {
+        xsd:string
+    }    
+}    
+
+return = element return {
+    inline.structure.model
+}
+
+note = element note {
+    (
+        block.structure.model |
+        inline.structure.model
+    ),
+    
+    date?,
+    todo?
+}
+
+history = element history {
+	attribute created { xsd:date }?,
+	change*
+}
+
+change = element change {
+    desc,
+    related?,
+    contributor*,
+    
+    (
+        (version | date) |
+        (version, date)
+    )
+    
+}
+
+date = attribute date {
+    xsd:date
+}
+
+version = attribute version {
+    xsd:string
+}
+
+todo = attribute todo {
+    xsd:boolean
+}
+
+p = element p {
+    inline.structure.model
+}
+
+contributor.structure.model = 
+    text
+    
+original-author = element author {
+    contributor.structure.model
+}
+
+contributor = element contributor {
+    contributor.structure.model
+}
+
+sequence = (
+    ul |
+    ol
+)
+
+sequence.structure.model = (
+    ingress?,
+    li*,
+    egress?    
+)
+
+ul = element ul {
+    sequence.structure.model
+}
+
+ol = element ol {
+    sequence.structure.model
+}
+
+li = element li {
+    sequence |
+    inline.structure.model
+}
+
+ingress = element ingress {
+    inline.structure.model
+}
+
+egress = element egress {
+    inline.structure.model
+}
+
+link = element link {
+    empty,
+    link.href
+}
+
+link.ref = attribute ref {
+    xsd:string
+}
+
+link.href = attribute href {
+    xsd:anyURI
+}
+
+related = element related {
+    change.link*
+}
+
+change.link = element link {
+    
+    empty,
+    
+    (
+        link.ref | 
+        link.href
+    ),
+    change.link.rel?
+}
+
+change.link.rel = attribute rel {
+  change.link.rel.attribute.values
+}
+
+change.link.rel.attribute.values = (
+    "epic" |
+    "feature" |
+    "story" |
+    "task" |
+    "bug" |
+    "impediment"
+)
+
+code.inline = element code {
+	text
+}
+
+code.block = element code-block {
+	code.line*
+}
+
+code.line = element line {
+	text
+}
+
+# Data types from https://www.w3.org/TR/xslt-30/schema-for-xslt30.rnc
+uri.qualified.name = xsd:token { 
+	pattern = "Q\{[^\{\}]*\}[\i-[:]][\c-[:]]*" 
+} 
+
+qname.strict = xsd:token { 
+	pattern = "[\i-[:]][\c-[:]]:[\i-[:]][\c-[:]]" 
+}
+
+qname.datatype = xsd:QName
+
+eqname.datatype = ( 
+	qname.datatype | 
+	uri.qualified.name | 
+	qname.strict 
+) 
