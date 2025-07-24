@@ -21,9 +21,9 @@ detailed.structure.model = (
 
 	title?,
     desc,
-    input?,
+    input*,
     param*,
-    return?,
+    return*,
 	contributors?,
     note*,
     history?
@@ -36,10 +36,11 @@ contributors = element contributors {
 }
 
 
-inline.structure.model = 
-    text & 
-    link & 
-    code.inline
+inline.structure.model = (
+	text | 
+	link | 
+	code.inline
+)*
 
 block.structure.model = (
     p | 
@@ -57,7 +58,13 @@ desc = element desc {
 }
 
 input = element input {
-    inline.structure.model
+    inline.structure.model,
+    
+    port.attrib?
+}
+
+port.attrib = attribute port {
+    xsd:string
 }
 
 param = element param {
@@ -118,7 +125,7 @@ p = element p {
 contributor.structure.model = 
     text
     
-original-author = element author {
+original-author = element original-author {
     contributor.structure.model
 }
 
@@ -159,9 +166,24 @@ egress = element egress {
 }
 
 link = element link {
-    empty,
-    link.href
+    link.structure.model
 }
+
+related = element related {
+    link.structure.model
+}
+
+link.structure.model = (
+	(
+    	text | 
+    	code.inline
+    )*,
+    (
+    	link.ref |
+    	link.href
+    ),
+    link.relationship?
+)
 
 link.ref = attribute ref {
     xsd:string
@@ -171,33 +193,9 @@ link.href = attribute href {
     xsd:anyURI
 }
 
-related = element related {
-    change.link*
+link.relationship = attribute rel {
+  text
 }
-
-change.link = element link {
-    
-    empty,
-    
-    (
-        link.ref | 
-        link.href
-    ),
-    change.link.rel?
-}
-
-change.link.rel = attribute rel {
-  change.link.rel.attribute.values
-}
-
-change.link.rel.attribute.values = (
-    "epic" |
-    "feature" |
-    "story" |
-    "task" |
-    "bug" |
-    "impediment"
-)
 
 code.inline = element code {
 	text

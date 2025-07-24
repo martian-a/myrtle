@@ -1,0 +1,8 @@
+<?xml-model href="http://xylarium.org/ns/xml/documentation" type="application/relax-ng-compact-syntax"?>
+<m:document xmlns:m="http://xylarium.org/ns/xml/documentation">
+	<m:desc>Creates a record of provenance metadata associated with a transformation.</m:desc>
+	<m:input>Source documents that were used during the transformation.</m:input>
+	<m:param name="include-user-name">Used to control whether the result should include or exclude the name of the person who started the transformation (if available).</m:param>
+	<m:param name="start-time">The date and time when the transformation process began.</m:param>
+	<m:return>A prov:Bundle as an XML document</m:return> 
+</m:document>

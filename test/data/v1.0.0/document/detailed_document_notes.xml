@@ -1,0 +1,23 @@
+<?xml-model href="http://xylarium.org/ns/xml/documentation" type="application/relax-ng-compact-syntax"?>
+<m:document xmlns:m="http://xylarium.org/ns/xml/documentation">
+	<m:title>GEDCOM Text to XML</m:title>
+	<m:desc>Converts the text serialisation of GEDCOM to very basic XML.</m:desc>
+	<m:contributors>
+		<m:original-author>Honor Harrington</m:original-author>
+		<m:contributor>A. McKeon</m:contributor>
+		<m:contributor>Estelle Matsuko</m:contributor>
+	</m:contributors>
+	<m:note date="2020-07-13">So far only tested on data exported from Ancestry.com.</m:note>
+	<m:note>Current scope is only GEDCOM 5.5.1</m:note>	
+	<m:note todo="true">Need to test with GEDCOM exported from other sources.</m:note>
+	<m:history created="2020-07-13">
+		<m:change date="2021-01-30" version="2.0.0">
+			<m:desc>Refactored from XSLT 2.0 to 3.0</m:desc>
+			<m:related href="https://www.w3.org/TR/xslt-30/" rel="specification">XSLT 3.0 Spec</m:related>
+			<m:contributor>A. McKeon</m:contributor>
+		</m:change>
+		<m:change date="2020-08-02">
+			<m:desc>Assorted bugfixes</m:desc>
+		</m:change>
+	</m:history>
+</m:document>

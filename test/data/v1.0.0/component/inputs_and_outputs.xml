@@ -1,0 +1,9 @@
+<?xml-model href="http://xylarium.org/ns/xml/documentation" type="application/relax-ng-compact-syntax"?>
+<m:component ref="next-generation" xmlns:m="http://xylarium.org/ns/xml/documentation">
+	<m:title>Next Generation</m:title>
+	<m:desc>
+		<m:p>Create a segment for each of the parents of the people in the current generation.</m:p>
+	</m:desc>
+	<m:param name="current-generation">A sequence of person elements, one for each of the people in the generation of ancestors currently being processed.</m:param>
+	<m:return>An svg:g (group) wrapping a ring of segments.</m:return>
+</m:component>
