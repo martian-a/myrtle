@@ -1,9 +1,23 @@
 # Myrtle
+
+Status: v1.0.0 released (2025-07-24)
+
+## Table of contents
+1. [Summary](#summary)
+1. [Usage Guide](#usage)
+   1. [Documentation about a stylesheet or step](#document)
+   1. [XProc](#xproc)
+   1. [Documentation about the component parts of a stylesheet or step](#component)
+   1. [Coment](#comment)  
+1. [Etymology](#etymology)
+
+## Summary <a id="summary"></a>
+
 Schema for documenting XML resources, such as XSLT stylesheets, XProc and Schematron.
 
-## Usage Guide
+## Usage Guide <a id="usage"></a>
 
-### Documentation about a stylesheet or step 
+### Documentation about a stylesheet or step <a id="document"></a>
 
 The wrapper for documentation about a stylesheet or pipeline is `m:document`.  It's expected to include a brief description of the intended purpose of the stylesheet/pipeline and possibly some additional metadata, for example:
 
@@ -62,7 +76,7 @@ If you wish, you can also document top-level parameters, inputs and outputs:
 </m:document>
 ```
 
-### XProc
+### XProc <a id="xproc"></a>
 
 There are a few extra considerations when writing documentation for an XProc step, for example, you will need to wrap the Myrtle documentation in a p:documentation element:
 
@@ -80,7 +94,7 @@ There are a few extra considerations when writing documentation for an XProc ste
 
 A `p:option` is documented using `m:param`.
 
-### Documentation about the component parts of a stylesheet or step
+### Documentation about the component parts of a stylesheet or step <a id="component"></a>
 
 You can document an XSLT template or call to an XProc step by adding an `m:component` immediately before that item:
 ```
@@ -147,7 +161,7 @@ In an XProc step, `m:component` needs to wrapped inside a `p:documentation` elem
 * `p:invisible-xml`
 * `p:identity`    
 
-###  Comment
+###  Comment <a id="comment"></a>
 
 You can also use `m:comment` to document components.  It supports less metadata and is included simply to make it easier to add (and identify) a temporary note.  It can include:
 
@@ -159,5 +173,5 @@ You can also use `m:comment` to document components.  It supports less metadata 
 
 `m:comment` can be used anywhere that `m:component` can be used.
 
-# Etymology
+# Etymology <a id="etymology"></a>
 This project is named after the Myrtle tree.  It belongs to a collection of repositories that have tree-themed names (they're not all public).
