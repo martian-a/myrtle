@@ -8,7 +8,7 @@ Status: v1.0.0 released (2025-07-24)
    1. [Documentation about a stylesheet or step](#document)
    1. [XProc](#xproc)
    1. [Documentation about the component parts of a stylesheet or step](#component)
-   1. [Coment](#comment)  
+   1. [Comment](#comment)  
 1. [Etymology](#etymology)
 
 ## Summary <a id="summary"></a>
