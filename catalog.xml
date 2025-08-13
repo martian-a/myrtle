@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+	
+	<system systemId="http://ns.thecodeyard.co.uk/schema/myrtle.rnc?v=0.1.0" uri="schema/myrtle-v0.1.0.rnc" />
+	<uri name="http://ns.kaikoda.com/documentation/xml" uri="schema/myrtle-v0.1.0.rnc" />
+	<uri name="http://xylarium.org/ns/xml/documentation" uri="schema/myrtle_v1.0.0.rnc" />
+			
+</catalog>
