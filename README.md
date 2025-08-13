@@ -1,6 +1,6 @@
 # Myrtle
 
-Status: v1.1.0 released (2025-08-14) - Added XML Catalog
+Status: v1.0.0-1 released (2025-08-14) - Added XML Catalog; no change to schema.
 
 ## Table of contents
 1. [Summary](#summary)
